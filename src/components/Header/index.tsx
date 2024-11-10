@@ -1,4 +1,7 @@
 import React from "react";
+import { IHeader } from "./type";
+
+
 import { Button } from "../Button";
 import logo from "../../assets/logo.png"
 import {
@@ -13,7 +16,7 @@ import {
     Wrapper
 } from './styles';
 
-export default function Header({ autenticado }) {
+export default function Header({ autenticado }: IHeader) {
     return (
         <Wrapper>
             <Container>

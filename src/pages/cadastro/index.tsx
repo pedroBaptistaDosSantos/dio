@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, TextContent, Title, TitleHighlight, Column, CriarText, EsqueciText, Row, SubtitleLogin, TitleLogin, Wrapper } from './styles';
+import { Container, TextContent, Title, Column, CriarText, EsqueciText, Row, SubtitleLogin, TitleLogin, Wrapper } from './styles';
 import { Input } from '../../components/Input';
 import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
@@ -24,9 +24,9 @@ const Cadastro = () => {
                 <Wrapper>
                     <TitleLogin>Faça seu Cadastro</TitleLogin>
                     <SubtitleLogin>Faça seu cadastro e entre na plataforma!</SubtitleLogin>
-                    <Input placeholder="Nome Completo" name="nome" leftIcon={MdEmail}></Input>
-                    <Input placeholder="Email" name="Compre" leftIcon={MdEmail}></Input>
-                    <Input placeholder="Senha" type="password" leftIcon={MdLock}></Input>
+                    <Input placeholder="Nome Completo" name="nome" leftIcon={<MdEmail />}></Input>
+                    <Input placeholder="Email" name="Compre" leftIcon={<MdEmail />}></Input>
+                    <Input placeholder="Senha" type="password" leftIcon={<MdLock />}></Input>
                     <Button title="Criar Conta" onClick={handleCadastro} variant='secondary'></Button>
                     <Row>
                         <EsqueciText>Esqueci minha senha</EsqueciText>
