@@ -1,18 +1,17 @@
-import { useNavigate } from 'react-router-dom';
-import { Button } from '../../components/Button';
-import { Header } from '../../components/Header';
-import bannerImage from '../../assets/banner.png';
-import { MdEmail, MdLock } from 'react-icons/md';
+import React from "react";
 import { Container, TextContent, Title, TitleHighlight, Column, CriarText, EsqueciText, Row, SubtitleLogin, TitleLogin, Wrapper } from './styles';
 import { Input } from '../../components/Input';
-
-const Login = () => {
-
+import { Header } from '../../components/Header';
+import { Button } from '../../components/Button';
+import { MdEmail, MdLock } from 'react-icons/md';
+import { useNavigate } from "react-router-dom";
+const Cadastro = () => {
     const navigate = useNavigate();
 
-    const handleLogin = () => {
+    const handleCadastro = () => {
         navigate('/feed');
     }
+
     return (<>
         <Header />
         <Container>
@@ -23,19 +22,20 @@ const Login = () => {
             </Column>
             <Column>
                 <Wrapper>
-                    <TitleLogin>Faça seu login</TitleLogin>
-                    <SubtitleLogin>Faça seu login e entre na plataforma!</SubtitleLogin>
+                    <TitleLogin>Faça seu Cadastro</TitleLogin>
+                    <SubtitleLogin>Faça seu cadastro e entre na plataforma!</SubtitleLogin>
+                    <Input placeholder="Nome Completo" name="nome" leftIcon={MdEmail}></Input>
                     <Input placeholder="Email" name="Compre" leftIcon={MdEmail}></Input>
                     <Input placeholder="Senha" type="password" leftIcon={MdLock}></Input>
-                    <Button title="Entrar" onClick={handleLogin}  variant='secondary'></Button>
+                    <Button title="Criar Conta" onClick={handleCadastro} variant='secondary'></Button>
                     <Row>
-                    <EsqueciText>Esqueci minha senha</EsqueciText>
-                    <CriarText>Criar Conta</CriarText>
-                </Row>
+                        <EsqueciText>Esqueci minha senha</EsqueciText>
+                        <CriarText>Criar Conta</CriarText>
+                    </Row>
                 </Wrapper>
             </Column>
         </Container>
     </>)
 }
 
-export { Login };
+export { Cadastro }

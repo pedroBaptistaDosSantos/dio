@@ -8,7 +8,7 @@ import { Container, TextContent, Title, TitleHighlight, Column } from './styles'
 const Feed = () => {
 
     return (<>
-        <Header />
+        <Header autenticado={true} />
         <Container>
             <Column flex={3}>
                 <Title>Feed</Title>
