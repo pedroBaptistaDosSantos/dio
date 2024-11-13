@@ -4,6 +4,7 @@ import { IForm } from './types';
 
 import { useNavigate } from 'react-router-dom';
 import { useForm, Control } from 'react-hook-form';
+import { useState } from 'react';
 
 
 import { Button } from '../../components/Button';
@@ -19,6 +20,8 @@ import { Input } from '../../components/Input';
 const Login = () => {
 
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const {
         register,
@@ -27,10 +30,17 @@ const Login = () => {
     } = useForm();
 
 
+    const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(event.target.value);
+    };
+    const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value);
+    };
     const handleLogin = () => {
         //navigate('/feed');
         console.log('foi para o feed');
     }
+
     return (<>
         <Header />
         <Container>
@@ -43,10 +53,14 @@ const Login = () => {
                 <Wrapper>
                     <TitleLogin>Faça seu login</TitleLogin>
                     <SubtitleLogin>Faça seu login e entre na plataforma!</SubtitleLogin>
-                    <form onSubmit={ (data) => console.log("dadsada" +data) }>
-                        <Input name="name" control={control} placeholder="Email" leftIcon={<MdEmail />}></Input>
-                        <Input name="password" control={control} placeholder="Senha" type="password" leftIcon={<MdLock />}></Input>
-                        <Button title="Entrar"  variant='secondary'></Button>
+                    <form onSubmit={(event) => {
+                        event.preventDefault(); // Previne o refresh da página
+                        console.log('email:' + email);
+                        console.log('senha:' + password);
+                    }}>
+                        <Input name="email" value={email || ''} onChange={handleChangeEmail} control={control} placeholder="Email" leftIcon={<MdEmail />}></Input>
+                        <Input name="password" value={password || ''} onChange={handleChangePassword} control={control} placeholder="Senha" type="password" leftIcon={<MdLock />}></Input>
+                        <Button title="Entrar" variant='secondary'></Button>
                     </form>
                     <Row>
                         <EsqueciText>Esqueci minha senha</EsqueciText>

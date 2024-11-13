@@ -6,4 +6,6 @@ export interface IInput {
     placeholder?: string
     type ?: string;
     control : Control;
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;    
 }
