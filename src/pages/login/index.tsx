@@ -5,7 +5,7 @@ import { IForm } from './types';
 import { useNavigate } from 'react-router-dom';
 import { useForm, Control } from 'react-hook-form';
 import { useState } from 'react';
-
+import * as yup from "yup";
 
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
@@ -14,7 +14,10 @@ import { MdEmail, MdLock } from 'react-icons/md';
 import { Container, TextContent, Title, Column, CriarText, EsqueciText, Row, SubtitleLogin, TitleLogin, Wrapper } from './styles';
 import { Input } from '../../components/Input';
 
-
+const validationSchema = yup.object({
+    firstName: yup.string().required("Required"),
+    lastName: yup.string().required("Required"),
+})
 
 
 const Login = () => {
