@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { IframeHTMLAttributes } from 'react';
 
 import { IForm } from './types';
 
-import { useNavigate } from 'react-router-dom';
-import { useForm, Control } from 'react-hook-form';
+import { Await, useNavigate } from 'react-router-dom';
+import { useForm, Control, UseFormProps } from 'react-hook-form';
 import { useState } from 'react';
 //import * as yup from "yup" a remover;
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
+import { api } from '../../services/api';
 
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
@@ -21,9 +22,9 @@ const validationSchema = z.object({
         .email('Digite um email válido'),
     password: z
         .string()
-        .min(3,  'No minimo 3 caracteres')
+        .min(3, 'No minimo 3 caracteres')
         .max(20)
-        
+
 });
 
 
@@ -40,14 +41,19 @@ const Login = () => {
             password: ''
         }
     })
-    console.log(isValid, errors);
 
-    const handleLogin = () => {
-        //navigate('/feed');
-        console.log('foi para o feed');
-    }
-    const handleSubmitForm = (data: any) => {
-        console.log(data);
+
+    const handleSubmitForm = async (Formdata: IForm) => {
+        try {
+            const {data} = await api.get(`users?email=${Formdata.email}&senha=${Formdata.password}`);
+            console.log(data);
+
+            if(data.length == 1) {
+                navigate('/feed');
+            }
+        } catch {
+            alert('Houve um erro, tente novamente.');
+        }
     }
 
     return (<>
@@ -64,10 +70,10 @@ const Login = () => {
                     <SubtitleLogin>Faça seu login e entre na plataforma!</SubtitleLogin>
                     <form onSubmit={handleSubmit(handleSubmitForm)}>
 
-                        
+
                         <Input {...register('email')} errorMessage={errors.email?.message} name="email" placeholder="Email" leftIcon={<MdEmail />}></Input>
                         <Input {...register('password')} errorMessage={errors.password?.message} name="password" placeholder="Senha" type="password" leftIcon={<MdLock />}></Input>
-                        
+
                         <Button title='Entrar' variant='secondary'></Button>
 
                     </form>

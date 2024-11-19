@@ -1,7 +1,6 @@
 import { Control } from "react-hook-form";
 
 export interface IForm {
-    name: string;
+    email: string;
     password: string;
-    control: Control;
 }
