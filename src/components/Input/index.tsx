@@ -1,25 +1,19 @@
-import React from "react";
-import { Controller } from "react-hook-form";
-import { useForm } from "react-hook-form";
+import React, { forwardRef } from "react";
 import { IInput } from "./types";
 
 import { InputContainer, InputText, IconContainer } from "./styles"
-const Input = ({ leftIcon, name, control, ...rest }: IInput
-) => {
+const Input = forwardRef<HTMLInputElement, IInput>(({leftIcon, ...props}, ref) => {
 
     return (
         <InputContainer>
             {leftIcon ? (<IconContainer>{leftIcon}</IconContainer>) : null}
-            <Controller
-                name={`${name}`}
-                control ={control}
-                rules={{ required: true }}
-                render={({ field }) => <InputText {...field} {...rest} />}
+            <InputText
+                 {...props} ref={ref}
             />
         </InputContainer>
 
     )
 
-}
+});
 
 export { Input }

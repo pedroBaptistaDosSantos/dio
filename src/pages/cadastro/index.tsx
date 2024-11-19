@@ -34,9 +34,9 @@ const Cadastro = () => {
                     <TitleLogin>Faça seu Cadastro</TitleLogin>
                     <SubtitleLogin>Faça seu cadastro e entre na plataforma!</SubtitleLogin>
                     <form onSubmit={(data) => console.log(data)}>
-                        <Input name="name" control={control} placeholder="Nome Completo" leftIcon={<MdEmail />}></Input>
-                        <Input name="email" control={control} placeholder="Email" leftIcon={<MdEmail />}></Input>
-                        <Input name="password" control={control}placeholder="Senha" type="password" leftIcon={<MdLock />}></Input>
+                        <Input name="name"  placeholder="Nome Completo" leftIcon={<MdEmail />}></Input>
+                        <Input name="email"  placeholder="Email" leftIcon={<MdEmail />}></Input>
+                        <Input name="password" placeholder="Senha" type="password" leftIcon={<MdLock />}></Input>
                         <Button title="Criar Conta" onClick={handleCadastro} variant='secondary'></Button>
 
                     </form>
