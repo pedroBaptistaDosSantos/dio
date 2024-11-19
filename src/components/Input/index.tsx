@@ -2,16 +2,18 @@ import React, { forwardRef } from "react";
 import { IInput } from "./types";
 
 import { InputContainer, InputText, IconContainer } from "./styles"
-const Input = forwardRef<HTMLInputElement, IInput>(({leftIcon, ...props}, ref) => {
+import { ErrorText } from "./styles";
+const Input = forwardRef<HTMLInputElement, IInput>(({ leftIcon, errorMessage, ...props }, ref) => {
 
-    return (
+    return (<>
         <InputContainer>
             {leftIcon ? (<IconContainer>{leftIcon}</IconContainer>) : null}
             <InputText
-                 {...props} ref={ref}
+                {...props} ref={ref}
             />
         </InputContainer>
-
+        {errorMessage ? <ErrorText>{errorMessage}</ErrorText> : null}
+    </>
     )
 
 });

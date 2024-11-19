@@ -16,47 +16,31 @@ import { Container, TextContent, Title, Column, CriarText, EsqueciText, Row, Sub
 import { Input } from '../../components/Input';
 
 
-/*
-const validationSchema = yup.object({
-    firstName: yup.string().required("Required"),
-    lastName: yup.string().required("Required"),
-})
-
-*/
-
 const validationSchema = z.object({
-    email: z.string(),
+    email: z.string()
+        .email('Digite um email válido'),
     password: z
         .string()
-        .min(3)
+        .min(3,  'No minimo 3 caracteres')
         .max(20)
+        
 });
+
+
 const Login = () => {
 
     const navigate = useNavigate();
 
-
-    /*
-    const {
-        register,
-        control,
-        handleSubmit,
-    } = useForm();
-     */
-
-    const { handleSubmit, register, formState: { errors } } = useForm({
-        mode: 'all',
+    const { handleSubmit, register, formState: { errors, isValid } } = useForm({
+        mode: 'onChange',
         criteriaMode: 'all',
-        //resolver: zodResolver(validationSchema),
+        resolver: zodResolver(validationSchema),
         defaultValues: {
             email: '',
             password: ''
         }
     })
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        
-    }
+    console.log(isValid, errors);
 
     const handleLogin = () => {
         //navigate('/feed');
@@ -81,8 +65,8 @@ const Login = () => {
                     <form onSubmit={handleSubmit(handleSubmitForm)}>
 
                         
-                        <Input {...register('email')} name="email" placeholder="Email" leftIcon={<MdEmail />}></Input>
-                        <Input {...register('password')} name="password" placeholder="Senha" type="password" leftIcon={<MdLock />}></Input>
+                        <Input {...register('email')} errorMessage={errors.email?.message} name="email" placeholder="Email" leftIcon={<MdEmail />}></Input>
+                        <Input {...register('password')} errorMessage={errors.password?.message} name="password" placeholder="Senha" type="password" leftIcon={<MdLock />}></Input>
                         
                         <Button title='Entrar' variant='secondary'></Button>
 
