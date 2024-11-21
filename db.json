@@ -1,6 +1,6 @@
 {
     "users": [
-    { "id": "1", "name": "mario", "email": "mario@nintendo.com", "senha" : "123456" },
-    { "id": "2", "name": "luigi", "email": "luigi@nintendo.com", "senha" : "123456" }
+    { "id": "1", "name": "mario", "email": "mario@nintendo.com", "password" : "123456" },
+    { "id": "2", "name": "luigi", "email": "luigi@nintendo.com", "password" : "123456" }
   ]
 }

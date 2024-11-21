@@ -5,10 +5,15 @@ import { UserInfo } from '../../components/UserInfo';
 //import bannerImage from '../../assets/banner.png';
 import { Container, Title, TitleHighlight, Column } from './styles';
 
-const Feed = () => {
+import { useContext } from 'react';
 
+import { AuthContext } from '../../context/auth';
+
+const Feed = () => {
+    const { user } = useContext(AuthContext)
+    console.log(user.name);
     return (<>
-        <Header autenticado={true} />
+        <Header/>
         <Container>
             <Column flex={3}>
                 <Title>Feed</Title>

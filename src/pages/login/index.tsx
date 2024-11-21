@@ -2,12 +2,14 @@ import React from 'react';
 
 import { IForm } from './types';
 
-import { useNavigate } from 'react-router-dom';
-import { useForm} from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 //import * as yup from "yup" a remover;
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
-import { api } from '../../services/api';
+
+import { useContext } from 'react';
+
+import { AuthContext } from '../../context/auth'
 
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
@@ -28,8 +30,8 @@ const validationSchema = z.object({
 
 
 const Login = () => {
+    const { handleLogin } = useContext(AuthContext)
 
-    const navigate = useNavigate();
 
     const { handleSubmit, register, formState: { errors } } = useForm({
         mode: 'onChange',
@@ -42,17 +44,8 @@ const Login = () => {
     })
 
 
-    const handleSubmitForm = async (Formdata: IForm) => {
-        try {
-            const {data} = await api.get(`users?email=${Formdata.email}&senha=${Formdata.password}`);
-            console.log(data);
-
-            if(data.length === 1) {
-                navigate('/feed');
-            }
-        } catch {
-            alert('Houve um erro, tente novamente.');
-        }
+    const handleSubmitForm = async (formData: IForm) => {
+        handleLogin(formData);
     }
 
     return (<>

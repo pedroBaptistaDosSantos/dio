@@ -8,18 +8,22 @@ import {
   BrowserRouter,
   Routes,
 } from "react-router-dom";
+import { AuthContextProvider } from "./context/auth";
 
 
 
 function App() {
   return (
+
     <BrowserRouter>
-       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/feed" element={<Feed />} />
-        <Route path="/cadastro" element={<Cadastro />} />
-       </Routes>
+      <AuthContextProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/feed" element={<Feed />} />
+          <Route path="/cadastro" element={<Cadastro />} />
+        </Routes>
+      </AuthContextProvider>
     </BrowserRouter>
   );
 }
