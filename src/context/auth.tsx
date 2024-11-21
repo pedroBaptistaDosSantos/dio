@@ -38,8 +38,12 @@ export const AuthContextProvider = ({
         }
     }
 
+    const handleSignOut = () => {
+        setUser({} as IUser);
+    }
+
     return (
-        <AuthContext.Provider value={{ user, handleLogin }}>
+        <AuthContext.Provider value={{ user, handleLogin, handleSignOut }}>
             {children}
         </AuthContext.Provider>
     );

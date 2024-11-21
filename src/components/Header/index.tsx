@@ -1,6 +1,9 @@
 import React from "react";
-import { IHeader } from "./type";
 
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+
+import { AuthContext } from "../../context/auth";
 
 import { Button } from "../Button";
 import logo from "../../assets/logo.png"
@@ -15,13 +18,18 @@ import {
     Wrapper
 } from './styles';
 
-export default function Header({ autenticado }: IHeader) {
+export default function Header() {
+    const { user, handleSignOut } = useContext(AuthContext);
+
     return (
         <Wrapper>
             <Container>
                 <Row>
-                    <img src={logo} alt="logo da dio" height="25px" />
-                    {autenticado ? (<>
+                    <Link to="/">
+                        <img src={logo} alt="logo da dio" height="25px" />
+                    </Link>
+
+                    {user.id ? (<>
 
                         <BuscarInputContainer>
                             <Input placeholder="Buscar..."></Input>
@@ -35,9 +43,10 @@ export default function Header({ autenticado }: IHeader) {
                 </Row>
                 <Row>
 
-                    {autenticado ? (<>
-
+                    {user.id ? (<>
+                        
                         <UserPicture src="https://avatars.githubusercontent.com/u/47180915?v=4" />
+                        <a href="#" onClick={handleSignOut}>Sair</a>
 
                     </>) : (<>
 

@@ -10,8 +10,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/auth';
 
 const Feed = () => {
-    const { user } = useContext(AuthContext)
-    console.log(user.name);
+
     return (<>
         <Header/>
         <Container>
