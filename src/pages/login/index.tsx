@@ -7,9 +7,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useContext } from 'react';
-
-import { AuthContext } from '../../context/auth'
+import { useAuth } from '../../hooks/useAuth';
 
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
@@ -30,7 +28,7 @@ const validationSchema = z.object({
 
 
 const Login = () => {
-    const { handleLogin } = useContext(AuthContext)
+    const { handleLogin } = useAuth();
 
 
     const { handleSubmit, register, formState: { errors } } = useForm({
