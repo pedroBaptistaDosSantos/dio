@@ -6,7 +6,6 @@ import { Button } from "../Button";
 import logo from "../../assets/logo.png"
 import {
     BuscarInputContainer,
-    Column,
     Container,
     Input,
     Menu,

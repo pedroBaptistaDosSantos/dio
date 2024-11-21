@@ -1,8 +1,8 @@
 import React from "react";
 
-import { useForm, Control } from 'react-hook-form';
+//import { useForm,} from 'react-hook-form';
 
-import { Container, TextContent, Title, Column, CriarText, EsqueciText, Row, SubtitleLogin, TitleLogin, Wrapper } from './styles';
+import { Container,Title, Column, CriarText, EsqueciText, Row, SubtitleLogin, TitleLogin, Wrapper } from './styles';
 import { Input } from '../../components/Input';
 import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
@@ -11,11 +11,7 @@ import { useNavigate } from "react-router-dom";
 const Cadastro = () => {
     const navigate = useNavigate();
 
-    const {
-        register,
-        control,
-        handleSubmit,
-    } = useForm();
+   
 
     const handleCadastro = () => {
         navigate('/feed');

@@ -1,10 +1,9 @@
-import React, { IframeHTMLAttributes } from 'react';
+import React from 'react';
 
 import { IForm } from './types';
 
-import { Await, useNavigate } from 'react-router-dom';
-import { useForm, Control, UseFormProps } from 'react-hook-form';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useForm} from 'react-hook-form';
 //import * as yup from "yup" a remover;
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,7 +12,7 @@ import { api } from '../../services/api';
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { MdEmail, MdLock } from 'react-icons/md';
-import { Container, TextContent, Title, Column, CriarText, EsqueciText, Row, SubtitleLogin, TitleLogin, Wrapper } from './styles';
+import { Container, Title, Column, CriarText, EsqueciText, Row, SubtitleLogin, TitleLogin, Wrapper } from './styles';
 import { Input } from '../../components/Input';
 
 
@@ -32,7 +31,7 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const { handleSubmit, register, formState: { errors, isValid } } = useForm({
+    const { handleSubmit, register, formState: { errors } } = useForm({
         mode: 'onChange',
         criteriaMode: 'all',
         resolver: zodResolver(validationSchema),
@@ -48,7 +47,7 @@ const Login = () => {
             const {data} = await api.get(`users?email=${Formdata.email}&senha=${Formdata.password}`);
             console.log(data);
 
-            if(data.length == 1) {
+            if(data.length === 1) {
                 navigate('/feed');
             }
         } catch {
